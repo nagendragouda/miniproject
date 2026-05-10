@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { buildUserScore } from '../../../../lib/careerPredictionAlgorithm'
-import { predictCareers } from '../../../../lib/careerPredictionAlgorithm'
+import { buildUserScore, predictCareers } from '@/lib/careerPredictionAlgorithm'
 import {
   generateEducationLevelGuidance,
   formatGuidanceForUI,

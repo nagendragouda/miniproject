@@ -4,8 +4,7 @@
  * Tests all three education levels with realistic user profiles
  */
 
-import { buildUserScore } from './careerPredictionAlgorithm'
-import { predictCareers } from './careerPredictionAlgorithm'
+import { buildUserScore, predictCareers } from '@/lib/careerPredictionAlgorithm'
 import {
   generateEducationLevelGuidance,
   formatGuidanceForUI,
