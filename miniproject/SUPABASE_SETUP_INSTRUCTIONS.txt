@@ -1,0 +1,243 @@
+===============================================================================
+🚀 COMPLETE SETUP GUIDE - USER DETAILS WITH SUPABASE
+===============================================================================
+
+⚠️  IMPORTANT: Follow these steps in ORDER!
+
+
+===============================================================================
+STEP 1: CREATE TABLE IN SUPABASE
+===============================================================================
+
+1. Go to: https://app.supabase.com/project/pdgsxesdxgtpyhohrmwi/sql/new
+
+2. Copy and paste this ENTIRE command:
+
+---START---
+
+CREATE TABLE public.user_details (
+  id BIGSERIAL PRIMARY KEY,
+  user_id VARCHAR(255) UNIQUE NOT NULL,
+  profile_picture_url VARCHAR(500),
+  username VARCHAR(100) UNIQUE NOT NULL,
+  full_name VARCHAR(255) NOT NULL,
+  age INTEGER NOT NULL,
+  gender VARCHAR(50) NOT NULL,
+  country VARCHAR(100) NOT NULL,
+  state VARCHAR(100),
+  city VARCHAR(100),
+  education_level VARCHAR(100) NOT NULL,
+  course VARCHAR(255) NOT NULL,
+  institution_name VARCHAR(255) NOT NULL,
+  year_of_study VARCHAR(50) NOT NULL,
+  skills JSONB DEFAULT '[]'::jsonb,
+  interests JSONB DEFAULT '[]'::jsonb,
+  activity_preference VARCHAR(100),
+  work_style VARCHAR(100),
+  desired_career_field VARCHAR(255),
+  dream_job_role VARCHAR(255),
+  expected_salary VARCHAR(100),
+  work_preference VARCHAR(100),
+  learning_method VARCHAR(100),
+  weekly_time_availability VARCHAR(100),
+  career_clarity VARCHAR(255),
+  experience JSONB DEFAULT '[]'::jsonb,
+  social_links JSONB DEFAULT '[]'::jsonb,
+  is_complete BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_user_id ON public.user_details(user_id);
+CREATE INDEX idx_username ON public.user_details(username);
+
+---END---
+
+3. Click "Run" button
+
+4. Wait for success message ✅
+
+
+===============================================================================
+STEP 2: SET UP IMAGE BUCKET FOR PROFILE PICTURES
+===============================================================================
+
+1. Go to Supabase Dashboard: https://app.supabase.com/project/pdgsxesdxgtpyhohrmwi/
+
+2. Click "Storage" in left menu
+
+3. Check if "profile-images" bucket exists:
+   ✅ If YES - Skip to Step 3
+   ❌ If NO - Follow below:
+   
+   a. Click "Create a new bucket"
+   b. Name: profile-images
+   c. Choose "Public bucket" (so users can see images)
+   d. Click "Create bucket"
+
+
+===============================================================================
+STEP 3: CONFIGURE IMAGE URL STORAGE
+===============================================================================
+
+Images are currently stored as BASE64 in the form.
+To save to bucket later, you'll need the URL pattern:
+
+Public URL format: 
+https://pdgsxesdxgtpyhohrmwi.supabase.co/storage/v1/object/public/profile-images/{filename}
+
+For now, BASE64 storage in database works fine ✅
+
+
+===============================================================================
+STEP 4: TEST THE DATABASE
+===============================================================================
+
+1. Go back to SQL Editor
+2. Run this test query:
+
+   SELECT * FROM public.user_details;
+
+3. Should show empty table (0 rows) - that's correct ✅
+
+
+===============================================================================
+STEP 5: VERIFY YOUR APP SETUP
+===============================================================================
+
+Check these files are correct:
+
+✅ .env.local has:
+   - NEXT_PUBLIC_SUPABASE_URL=https://pdgsxesdxgtpyhohrmwi.supabase.co
+   - NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+   - SUPABASE_SERVICE_ROLE_KEY=...
+
+✅ lib/supabase-client.ts exists and created ✅
+
+✅ app/api/user-details/route.ts updated with new code ✅
+
+
+===============================================================================
+STEP 6: TEST SAVING DATA
+===============================================================================
+
+1. Start your app:
+   npm.cmd run dev
+
+2. Go to: http://localhost:3010/user-details
+
+3. Fill in the MANDATORY fields:
+   - Username
+   - Full Name
+   - Age
+   - Gender
+   - Country
+   - Education Level
+   - Course
+   - Institution Name
+   - Year of Study
+
+4. Click "Save Profile" button
+
+5. Check for success message
+
+
+===============================================================================
+STEP 7: VERIFY DATA WAS SAVED
+===============================================================================
+
+1. Go to Supabase SQL Editor
+2. Run this query:
+
+   SELECT user_id, username, full_name, is_complete FROM public.user_details;
+
+3. You should see your profile! ✅
+
+
+===============================================================================
+STEP 8: TROUBLESHOOTING
+===============================================================================
+
+If data is NOT saving:
+
+❌ ERROR: "relation 'user_details' does not exist"
+   → Table was not created
+   → Go back to STEP 1 and create table again
+
+❌ ERROR: "duplicate key value violates unique constraint"
+   → Username or user_id already exists
+   → Edit profile with different username
+
+❌ ERROR: "permission denied"
+   → RLS policies are blocking
+   → Disable RLS for now (optional)
+
+❌ Can't see profile after saving
+   → Refresh page: http://localhost:3010/user-details
+   → Check browser console for errors (F12)
+
+
+===============================================================================
+STEP 9: IMAGE BUCKET SETUP (OPTIONAL - FOR FUTURE)
+===============================================================================
+
+To upload images directly to "profile-images" bucket:
+
+1. Create lib/supabase-storage.ts with upload function
+2. Update user-details page to upload to bucket
+3. Store bucket URL instead of base64
+
+(Ready to do this when you ask!)
+
+
+===============================================================================
+QUICK COMMANDS REFERENCE
+===============================================================================
+
+View all profiles:
+   SELECT * FROM public.user_details;
+
+View single profile:
+   SELECT * FROM public.user_details WHERE user_id = 'YOUR_UID';
+
+Delete profile:
+   DELETE FROM public.user_details WHERE user_id = 'YOUR_UID';
+
+Update profile:
+   UPDATE public.user_details SET full_name = 'New Name' WHERE user_id = 'YOUR_UID';
+
+
+===============================================================================
+✅ CHECKLIST - DO THESE IN ORDER
+===============================================================================
+
+[ ] Step 1: Create table in Supabase
+[ ] Step 2: Create profile-images bucket
+[ ] Step 3: Understand image URLs
+[ ] Step 4: Test database with query
+[ ] Step 5: Verify app configuration
+[ ] Step 6: Test saving data from app
+[ ] Step 7: Verify in SQL
+[ ] Step 8: Troubleshoot if needed
+[ ] Step 9: Ready for bucket uploads
+
+
+===============================================================================
+🎯 NEXT STEPS
+===============================================================================
+
+After all above steps work:
+1. User profiles will save to Supabase
+2. Data persists between sessions
+3. Can update profiles anytime
+4. Images stored as base64 for now
+
+When ready:
+- Upload images to bucket (instead of base64)
+- Set up image deletion
+- Add more features
+
+
+===============================================================================
+Get help if you're stuck - share the error message! 
+===============================================================================

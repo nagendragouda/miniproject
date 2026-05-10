@@ -1,0 +1,27 @@
+
+> career-advisor-platform@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3002
+   - Environments: .env.local, .env
+
+Error: EINVAL: invalid argument, readlink 'C:\Users\nagen\OneDrive\Documents\mini project\miniproject\.next\static\media\19cfc7226ec3afaa-s.woff2'
+    at async Object.readlink (node:internal/fs/promises:974:10)
+    at async C:\Users\nagen\OneDrive\Documents\mini project\miniproject\node_modules\next\dist\lib\recursive-delete.js:58:30
+    at async Promise.all (index 0)
+    at async recursiveDelete (C:\Users\nagen\OneDrive\Documents\mini project\miniproject\node_modules\next\dist\lib\recursive-delete.js:51:5)
+    at async C:\Users\nagen\OneDrive\Documents\mini project\miniproject\node_modules\next\dist\lib\recursive-delete.js:68:17
+    at async Promise.all (index 3)
+    at async recursiveDelete (C:\Users\nagen\OneDrive\Documents\mini project\miniproject\node_modules\next\dist\lib\recursive-delete.js:51:5)
+    at async C:\Users\nagen\OneDrive\Documents\mini project\miniproject\node_modules\next\dist\lib\recursive-delete.js:68:17
+    at async Promise.all (index 7)
+    at async recursiveDelete (C:\Users\nagen\OneDrive\Documents\mini project\miniproject\node_modules\next\dist\lib\recursive-delete.js:51:5) {
+  errno: -4071,
+  code: 'EINVAL',
+  syscall: 'readlink',
+  path: 'C:\\Users\\nagen\\OneDrive\\Documents\\mini project\\miniproject\\.next\\static\\media\\19cfc7226ec3afaa-s.woff2'
+}
+[?25h

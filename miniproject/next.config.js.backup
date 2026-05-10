@@ -1,0 +1,36 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  reactStrictMode: true,
+  swcMinify: false,
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://apis.google.com https://accounts.google.com https://consent.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss: https://www.google-analytics.com https://www.googletagmanager.com https://*.firebaseio.com https://*.googleapis.com https://accounts.google.com https://*.firebaseapp.com; frame-src https://accounts.google.com https://*.firebaseapp.com https://www.gstatic.com; frame-ancestors 'self'; base-uri 'self';"
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN'
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          }
+        ]
+      }
+    ]
+  },
+}
+
+module.exports = nextConfig

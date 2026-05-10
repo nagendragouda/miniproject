@@ -1,0 +1,28 @@
+   ▲ Next.js 14.1.0
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./app/api/career-guidance/education-level/route.ts
+Module not found: Can't resolve '../../../../lib/careerPredictionAlgorithm'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/api/career-guidance/education-level/route.ts
+Module not found: Can't resolve '@/lib/educationLevelGuidance'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/api/career-prediction-new/route.ts
+Module not found: Can't resolve '@/lib/educationLevelCareerPrediction'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/api/quiz/submit/route.ts
+Module not found: Can't resolve '@/lib/educationLevelCareerPrediction'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors

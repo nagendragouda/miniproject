@@ -1,0 +1,32 @@
+# Dependencies
+miniproject/node_modules/
+node_modules/
+
+# Next.js build
+miniproject/.next/
+miniproject/out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Misc
+.DS_Store
+miniproject/playwright-report/
+miniproject/test-results/
+miniproject/results/
+
+# Environment
+.env
+.env.local
+miniproject/.env
+miniproject/.env.local
+miniproject/.env.development.local
+miniproject/.env.test.local
+miniproject/.env.production.local
+
+# Vercel
+.vercel
+miniproject/.vercel

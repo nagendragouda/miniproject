@@ -1,0 +1,48 @@
+.defaultScheme {
+  --neon-cyan: #00FFFF;
+  --neon-pink: #FF007F;
+  --neon-purple: #8B00FF;
+}
+
+.vibrantScheme {
+  --neon-cyan: #00D9FF;
+  --neon-pink: #FF0080;
+  --neon-purple: #FF0080;
+}
+
+.coolScheme {
+  --neon-cyan: #00E5FF;
+  --neon-pink: #9F00FF;
+  --neon-purple: #0066FF;
+}
+
+.warmScheme {
+  --neon-cyan: #FFB800;
+  --neon-pink: #FF4500;
+  --neon-purple: #FF69B4;
+}
+
+/* Adjust orb colors for different schemes */
+.vibrantScheme .orbCyan {
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.35) 0%, rgba(0, 217, 255, 0) 70%);
+}
+
+.vibrantScheme .orbPink {
+  background: radial-gradient(circle, rgba(255, 0, 128, 0.35) 0%, rgba(255, 0, 128, 0) 70%);
+}
+
+.coolScheme .orbCyan {
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.3) 0%, rgba(0, 229, 255, 0) 70%);
+}
+
+.coolScheme .orbPink {
+  background: radial-gradient(circle, rgba(159, 0, 255, 0.3) 0%, rgba(159, 0, 255, 0) 70%);
+}
+
+.warmScheme .orbCyan {
+  background: radial-gradient(circle, rgba(255, 184, 0, 0.25) 0%, rgba(255, 184, 0, 0) 70%);
+}
+
+.warmScheme .orbPink {
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.25) 0%, rgba(255, 69, 0, 0) 70%);
+}
