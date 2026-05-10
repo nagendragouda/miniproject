@@ -25,6 +25,8 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import FloatingShapes from '@/components/FloatingShapes'
+import BackButton from '@/components/BackButton'
 
 // Dynamically import 3D components
 const CareerTree3D = dynamic(() => import('@/components/CareerTree3D'), {

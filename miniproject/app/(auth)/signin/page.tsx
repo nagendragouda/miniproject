@@ -69,11 +69,6 @@ export default function SignInPage() {
       await signIn(formData.email, formData.password)
       // Success - user or isAdmin will be updated and useEffect will handle redirect
     } catch (error: any) {
-      
-      // Success - user will be logged in and auth state will update
-      // useEffect will handle redirect
-      
-    } catch (error: any) {
       // Handle Firebase-specific errors
       if (error.code === 'auth/user-not-found') {
         setErrors({ general: 'No account found with this email. Please sign up.' })
@@ -91,6 +86,7 @@ export default function SignInPage() {
     } finally {
       setLoading(false)
     }
+
   }
 
   const handleInputChange = (field: keyof typeof formData) => (

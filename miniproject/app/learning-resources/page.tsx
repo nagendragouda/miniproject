@@ -89,29 +89,6 @@ export default function LearningResourcesPage() {
   const router = useRouter()
   const [isRedirecting, setIsRedirecting] = useState(true)
   const [mounted, setMounted] = useState(false)
-  
-  useEffect(() => {
-    const adminAuth = localStorage.getItem('fm_admin_authenticated')
-    if (adminAuth === 'true') {
-      router.replace('/admin')
-    } else if (!authLoading && !user) {
-      router.push('/auth/signup?next=/learning-resources')
-    } else {
-      setIsRedirecting(false)
-    }
-  }, [router, authLoading, user])
-
-  if (authLoading || isRedirecting) {
-    return (
-      <div className="min-h-screen bg-[#030712] flex flex-col items-center justify-center gap-6">
-        <Loader2 className="w-12 h-12 text-emerald-400 animate-spin" />
-        <p className="text-emerald-400 font-bold tracking-widest uppercase text-[10px]">Accessing Resource Vault...</p>
-      </div>
-    )
-  }
-
-  if (!user) return null
-  
   const [learningResources, setLearningResources] = useState<Resource[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
@@ -132,6 +109,17 @@ export default function LearningResourcesPage() {
   const [aiPrice, setAiPrice] = useState('Any')
   const [aiResults, setAiResults] = useState<Resource[]>([])
   const [aiLoading, setAiLoading] = useState(false)
+
+  useEffect(() => {
+    const adminAuth = localStorage.getItem('fm_admin_authenticated')
+    if (adminAuth === 'true') {
+      router.replace('/admin')
+    } else if (!authLoading && !user) {
+      router.push('/auth/signup?next=/learning-resources')
+    } else {
+      setIsRedirecting(false)
+    }
+  }, [router, authLoading, user])
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -161,6 +149,18 @@ export default function LearningResourcesPage() {
         .catch(err => console.error('Error fetching saved resources:', err))
     }
   }, [user])
+
+
+  if (authLoading || isRedirecting) {
+    return (
+      <div className="min-h-screen bg-[#030712] flex flex-col items-center justify-center gap-6">
+        <Loader2 className="w-12 h-12 text-emerald-400 animate-spin" />
+        <p className="text-emerald-400 font-bold tracking-widest uppercase text-[10px]">Accessing Resource Vault...</p>
+      </div>
+    )
+  }
+
+  if (!user) return null
 
   const filteredResources = learningResources.filter(resource => {
     const matchesSearch = resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
