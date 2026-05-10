@@ -786,9 +786,10 @@ export default function QuizEnhanced() {
           </motion.div>
         )}
       </div>
-    </div>
+    </main>
   )
 }
+
 
 // Question Components
 const ScaleQuestion = ({ question, questionId, answers, onAnswer }: any) => {
