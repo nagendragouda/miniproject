@@ -342,251 +342,253 @@ export default function QuizEnhanced() {
     return 'from-orange-500/20 to-red-500/20'
   }
 
-  // Loading state
-  if (loading) {
-    return (
-      <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white flex items-center justify-center">
-        {/* Premium Background Effects */}
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_85%)]" />
-        <FloatingShapes />
+  // Determine what to render based on state
+  const renderContent = () => {
+    // Loading state
+    if (loading) {
+      return (
+        <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white flex items-center justify-center">
+          {/* Premium Background Effects */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_85%)]" />
+          <FloatingShapes />
 
-        <div className="text-center relative z-10">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="w-16 h-16 border-4 border-secondary border-t-transparent rounded-full mx-auto mb-6"
-          />
-          <h2 className="text-3xl font-bold text-white mb-3">Analyzing Your Potential...</h2>
-          <p className="text-text-secondary text-lg">Our AI is orchestrating your future career roadmap</p>
-        </div>
-      </main>
-    )
-  }
-
-  // Results view
-  if (view === 'results' && result) {
-    return (
-      <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white py-24">
-        {/* Premium Background Effects */}
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_85%)]" />
-        <FloatingShapes />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            <div className="flex justify-center mb-4">
-              <div className="w-20 h-20 bg-gradient-to-r from-secondary to-warning rounded-full flex items-center justify-center">
-                <Target className="w-10 h-10 text-space-dark" />
-              </div>
-            </div>
-            <h1 className="text-4xl font-bold text-text-primary mb-4">
-              Your Perfect Career Match!
-            </h1>
-            <div className="flex items-center justify-center space-x-2 text-secondary">
-              <Star className="w-6 h-6 fill-current" />
-              <span className="text-2xl font-bold">{result.score}% Match</span>
-              <Star className="w-6 h-6 fill-current" />
-            </div>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Career Details */}
+          <div className="text-center relative z-10">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass-card p-8 rounded-2xl"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="w-16 h-16 border-4 border-secondary border-t-transparent rounded-full mx-auto mb-6"
+            />
+            <h2 className="text-3xl font-bold text-white mb-3">Analyzing Your Potential...</h2>
+            <p className="text-text-secondary text-lg">Our AI is orchestrating your future career roadmap</p>
+          </div>
+        </main>
+      )
+    }
+
+    // Results view
+    if (view === 'results' && result) {
+      return (
+        <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white py-24">
+          {/* Premium Background Effects */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_85%)]" />
+          <FloatingShapes />
+
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-8"
             >
-              <h2 className="text-3xl font-bold text-text-primary mb-4">{result.careerPath}</h2>
-              
-              <p className="text-text-secondary mb-6 leading-relaxed">
-                {result.description}
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-black/20 p-4 rounded-lg">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <BarChart3 className="w-5 h-5 text-secondary" />
-                    <span className="text-sm font-medium text-text-secondary">Salary Range</span>
-                  </div>
-                  <p className="text-secondary font-bold">{result.averageSalary}</p>
-                </div>
-                
-                <div className="bg-black/20 p-4 rounded-lg">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Target className="w-5 h-5 text-warning" />
-                    <span className="text-sm font-medium text-text-secondary">Growth</span>
-                  </div>
-                  <p className="text-warning font-bold text-sm">{result.growthProspect}</p>
+              <div className="flex justify-center mb-4">
+                <div className="w-20 h-20 bg-gradient-to-r from-secondary to-warning rounded-full flex items-center justify-center">
+                  <Target className="w-10 h-10 text-space-dark" />
                 </div>
               </div>
-
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-3">Your Top Interests</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {result.interests.map((interest, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-secondary/20 text-secondary text-sm rounded-full border border-secondary/30"
-                      >
-                        {interest}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-3">Key Skills to Develop</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {result.skills.map((skill, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-warning/20 text-warning text-sm rounded-full border border-warning/30"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-6 flex gap-4">
-                <button
-                  onClick={restartQuiz}
-                  className="flex-1 py-3 px-4 border border-gray-600 text-text-secondary rounded-lg hover:border-secondary hover:text-secondary transition-all"
-                >
-                  Retake Quiz
-                </button>
-                <button
-                  onClick={() => router.push('/dashboard')}
-                  className="flex-1 py-3 px-4 bg-gradient-to-r from-secondary to-warning text-space-dark font-semibold rounded-lg hover:shadow-lg transition-all"
-                >
-                  Go to Dashboard
-                </button>
+              <h1 className="text-4xl font-bold text-text-primary mb-4">
+                Your Perfect Career Match!
+              </h1>
+              <div className="flex items-center justify-center space-x-2 text-secondary">
+                <Star className="w-6 h-6 fill-current" />
+                <span className="text-2xl font-bold">{result.score}% Match</span>
+                <Star className="w-6 h-6 fill-current" />
               </div>
             </motion.div>
-          </div>
 
-          <div className="mt-8 text-center">
-            <button
-              onClick={() => setView('landing')}
-              className="text-slate-600 hover:text-text-primary transition-colors"
-            >
-              ← Back to Quiz Hub
-            </button>
-          </div>
-        </div>
-      </main>
-    )
-  }
+            <div className="grid grid-cols-1 gap-8">
+              {/* Career Details */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="glass-card p-8 rounded-2xl"
+              >
+                <h2 className="text-3xl font-bold text-text-primary mb-4">{result.careerPath}</h2>
+                
+                <p className="text-text-secondary mb-6 leading-relaxed">
+                  {result.description}
+                </p>
 
-  // Quiz view
-  if (view === 'quiz') {
-    const currentQ = questions[currentQuestion]
-    const progress = ((currentQuestion + 1) / questions.length) * 100
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <BarChart3 className="w-5 h-5 text-secondary" />
+                      <span className="text-sm font-medium text-text-secondary">Salary Range</span>
+                    </div>
+                    <p className="text-secondary font-bold">{result.averageSalary}</p>
+                  </div>
+                  
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Target className="w-5 h-5 text-warning" />
+                      <span className="text-sm font-medium text-text-secondary">Growth</span>
+                    </div>
+                    <p className="text-warning font-bold text-sm">{result.growthProspect}</p>
+                  </div>
+                </div>
 
-    return (
-      <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white py-24">
-        {/* Premium Background Effects */}
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_85%)]" />
-        <FloatingShapes />
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-text-primary mb-3">Your Top Interests</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {result.interests.map((interest, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-secondary/20 text-secondary text-sm rounded-full border border-secondary/30"
+                        >
+                          {interest}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
-          >
-            <h1 className="text-3xl font-bold text-text-primary mb-4">Career Discovery Quiz</h1>
-            <div className="flex items-center justify-center space-x-4 text-slate-600">
-              <span>Question {currentQuestion + 1} of {questions.length}</span>
-              <div className="w-2 h-2 bg-secondary rounded-full"></div>
-              <span>{Math.round(progress)}% Complete</span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-text-primary mb-3">Key Skills to Develop</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {result.skills.map((skill, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-warning/20 text-warning text-sm rounded-full border border-warning/30"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 flex gap-4">
+                  <button
+                    onClick={restartQuiz}
+                    className="flex-1 py-3 px-4 border border-gray-600 text-text-secondary rounded-lg hover:border-secondary hover:text-secondary transition-all"
+                  >
+                    Retake Quiz
+                  </button>
+                  <button
+                    onClick={() => router.push('/dashboard')}
+                    className="flex-1 py-3 px-4 bg-gradient-to-r from-secondary to-warning text-space-dark font-semibold rounded-lg hover:shadow-lg transition-all"
+                  >
+                    Go to Dashboard
+                  </button>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
 
-          {/* Progress Bar */}
-          <div className="w-full bg-slate-100 rounded-full h-2 mb-8">
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setView('landing')}
+                className="text-slate-600 hover:text-text-primary transition-colors"
+              >
+                ← Back to Quiz Hub
+              </button>
+            </div>
+          </div>
+        </main>
+      )
+    }
+
+    // Quiz view
+    if (view === 'quiz') {
+      const currentQ = questions[currentQuestion]
+      const progress = ((currentQuestion + 1) / questions.length) * 100
+
+      return (
+        <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white py-24">
+          {/* Premium Background Effects */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_85%)]" />
+          <FloatingShapes />
+
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header */}
             <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-r from-secondary to-warning h-2 rounded-full"
-            />
-          </div>
-
-          {/* Question Card */}
-          <motion.div
-            key={currentQuestion}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
-            className="glass-card p-8 rounded-2xl mb-8"
-          >
-            <h2 className="text-2xl font-bold text-text-primary mb-8 text-center">
-              {currentQ.question}
-            </h2>
-
-            {/* Question Content */}
-            {currentQ.type === 'scale' && (
-              <ScaleQuestion question={currentQ} questionId={currentQ.id} answers={answers} onAnswer={handleAnswer} />
-            )}
-            
-            {currentQ.type === 'multiple_choice' && (
-              <MultipleChoiceQuestion question={currentQ} questionId={currentQ.id} answers={answers} onAnswer={handleAnswer} />
-            )}
-            
-            {currentQ.type === 'multi_select' && (
-              <MultiSelectQuestion question={currentQ} questionId={currentQ.id} answers={answers} onAnswer={handleAnswer} />
-            )}
-          </motion.div>
-
-          {/* Navigation */}
-          <div className="flex justify-between items-center">
-            <button
-              onClick={prevQuestion}
-              disabled={currentQuestion === 0}
-              className="flex items-center space-x-2 px-6 py-3 border border-gray-600 text-text-secondary rounded-lg hover:border-secondary hover:text-secondary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-8"
             >
-              <ArrowLeft className="w-5 h-5" />
-              <span>Previous</span>
-            </button>
+              <h1 className="text-3xl font-bold text-text-primary mb-4">Career Discovery Quiz</h1>
+              <div className="flex items-center justify-center space-x-4 text-slate-600">
+                <span>Question {currentQuestion + 1} of {questions.length}</span>
+                <div className="w-2 h-2 bg-secondary rounded-full"></div>
+                <span>{Math.round(progress)}% Complete</span>
+              </div>
+            </motion.div>
 
-            <button
-              onClick={nextQuestion}
-              disabled={!answers[currentQ.id]}
-              className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-secondary to-warning text-space-dark font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+            {/* Progress Bar */}
+            <div className="w-full bg-slate-100 rounded-full h-2 mb-8">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 0.5 }}
+                className="bg-gradient-to-r from-secondary to-warning h-2 rounded-full"
+              />
+            </div>
+
+            {/* Question Card */}
+            <motion.div
+              key={currentQuestion}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.3 }}
+              className="glass-card p-8 rounded-2xl mb-8"
             >
-              <span>{currentQuestion === questions.length - 1 ? 'Complete Quiz' : 'Next'}</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
+              <h2 className="text-2xl font-bold text-text-primary mb-8 text-center">
+                {currentQ.question}
+              </h2>
 
-          <div className="mt-8 text-center">
-            <button
-              onClick={() => setView('landing')}
-              className="text-slate-600 hover:text-text-primary transition-colors"
-            >
-              ← Back to Quiz Hub
-            </button>
-          </div>
-        </div>
-      </main>
-    )
-  }
+              {/* Question Content */}
+              {currentQ.type === 'scale' && (
+                <ScaleQuestion question={currentQ} questionId={currentQ.id} answers={answers} onAnswer={handleAnswer} />
+              )}
+              
+              {currentQ.type === 'multiple_choice' && (
+                <MultipleChoiceQuestion question={currentQ} questionId={currentQ.id} answers={answers} onAnswer={handleAnswer} />
+              )}
+              
+              {currentQ.type === 'multi_select' && (
+                <MultiSelectQuestion question={currentQ} questionId={currentQ.id} answers={answers} onAnswer={handleAnswer} />
+              )}
+            </motion.div>
 
-  // Landing page view
-  return (
+            {/* Navigation */}
+            <div className="flex justify-between items-center">
+              <button
+                onClick={prevQuestion}
+                disabled={currentQuestion === 0}
+                className="flex items-center space-x-2 px-6 py-3 border border-gray-600 text-text-secondary rounded-lg hover:border-secondary hover:text-secondary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                <span>Previous</span>
+              </button>
+
+              <button
+                onClick={nextQuestion}
+                disabled={!answers[currentQ.id]}
+                className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-secondary to-warning text-space-dark font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span>{currentQuestion === questions.length - 1 ? 'Complete Quiz' : 'Next'}</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setView('landing')}
+                className="text-slate-600 hover:text-text-primary transition-colors"
+              >
+                ← Back to Quiz Hub
+              </button>
+            </div>
+          </div>
+        </main>
+      )
+    }
+
+    // Landing page view (default)
+    return (
     <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white">
       {/* Premium Background Effects */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
@@ -789,7 +791,11 @@ export default function QuizEnhanced() {
         )}
       </div>
     </main>
-  )
+    )
+  }
+  
+  // Render the appropriate view
+  return renderContent()
 }
 
 
