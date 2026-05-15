@@ -589,7 +589,7 @@ export default function QuizEnhanced() {
 
     // Landing page view (default)
     return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white">
+      <main className="relative min-h-screen w-full overflow-hidden bg-[#030712] text-white">
       {/* Premium Background Effects */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(168,85,247,0.2),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.15),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(34,211,238,0.1),_transparent_30%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_85%)]" />
